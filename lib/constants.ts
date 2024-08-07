@@ -6,19 +6,22 @@ export const EMAIL_REGEX = new RegExp(
 )
 
 // 이메일 형식 에러 알림
-export const EMAIL_ERROR = "이메일 형식 유지하셈"
+export const EMAIL_ERROR = "Please maintain email format";
 
 // @zod.com 필수 이메일 에러 알림
-export const EMAIL_REGEX_ERROR = "@zod.com 필수임"
+export const EMAIL_REGEX_ERROR = "Only @zod.com email are allowed";
 
 // username 최소 단위
 export const USERNAME_MIN_LENGTH = 5;
 
 // username 최소 단위 에러 알림
-export const USERNAME_MIN_LENGTH_ERROR = '5글자 이상하셈';
+export const USERNAME_MIN_LENGTH_ERROR = 'Username should be at least 5 characters long';
 
 // 비밀번호 최소 단위
 export const PASSWORD_MIN_LENGTH = 10;
+
+// 비밀번호 최소 단위 에러 알림
+export const PASSWORD_MIN_LENGTH_ERROR = 'Password should be at least 10 characters long';
 
 // 숫자 1개 이상 무조건 있어야하는 정규식
 export const PASSWORD_REGEX = new RegExp(
