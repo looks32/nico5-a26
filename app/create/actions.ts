@@ -16,6 +16,7 @@ import { z } from "zod";
 
 import bcrypt from "bcrypt";
 import db from "@/lib/db";
+import { redirect } from "next/navigation";
 
 export interface FormState {
   errors?: {
@@ -69,7 +70,7 @@ const formSchema = z.object({
 });
 
 
-export async function logIn(prevState: FormState | undefined, formData: FormData) {
+export async function createUser(prevState: FormState | undefined, formData: FormData) {
   const data = {
     email: formData.get("email"),
     username: formData.get("username"),
@@ -89,10 +90,10 @@ export async function logIn(prevState: FormState | undefined, formData: FormData
   }
   else {
 
+    // 비밀번호 암호화
     const hashedPassword = await bcrypt.hash(result.data.password, 12);
 
-    // user만들기
-    // 암호화 된 비밀번호를 가진 계정이 만들어 진다.
+    // user 회원가입
     const user = await db.user.create({
       data: {
         username: result.data.username,
@@ -104,7 +105,8 @@ export async function logIn(prevState: FormState | undefined, formData: FormData
       },
     });
 
-    console.log('완료', user)
+    console.log('완료', user);
+    redirect('/')
 
     // return {
     //   errors: {},

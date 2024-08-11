@@ -4,7 +4,7 @@ import FormButton from "@/components/form-btn";
 import Input from "@/components/input";
 
 import { useFormState } from "react-dom";
-import { logIn, FormState } from "./actions";
+import { createUser, FormState } from "./actions";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 
 const initialState: FormState = {
@@ -14,7 +14,7 @@ const initialState: FormState = {
 
 export default function Create() {
 
-  const [state, action] = useFormState(logIn, initialState);
+  const [state, action] = useFormState(createUser, initialState);
 
   return (
     <div className="flex flex-col gap-10 py-8 px-6">
@@ -47,10 +47,11 @@ export default function Create() {
           required
           errors={state?.errors?.fieldErrors?.confirm_password}
         />
-          <FormButton text="logIn" />
-          {state?.message && (
+          <FormButton text="Create!" />
+          {/* 필요 없어짐 */}
+          {/* {state?.message && (
             <div className="bg-green-600 text-white p-3 rounded-md text-center">Welcome back!</div>
-          )}
+          )} */}
       </form>
 
     </div>
