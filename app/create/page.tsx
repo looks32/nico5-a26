@@ -26,22 +26,29 @@ export default function Create() {
             name="email"
             type="email"
             placeholder="Email"
-            errors={state.errors?.fieldErrors?.email}
+            errors={state?.errors?.fieldErrors?.email}
           />
           <Input
             name="username"
             type="text"
             placeholder="Username"
-            errors={state.errors?.fieldErrors?.username}
+            errors={state?.errors?.fieldErrors?.username}
           />
           <Input
             name="password"
             type="password"
             placeholder="Password"
-            errors={state.errors?.fieldErrors?.password}
+            errors={state?.errors?.fieldErrors?.password}
           />
+          <Input
+          name="confirm_password"
+          type="password"
+          placeholder="Confirm Password"
+          required
+          errors={state?.errors?.fieldErrors?.confirm_password}
+        />
           <FormButton text="logIn" />
-          {state.message && (
+          {state?.message && (
             <div className="bg-green-600 text-white p-3 rounded-md text-center">Welcome back!</div>
           )}
       </form>
