@@ -1,5 +1,7 @@
+import { logOut } from '@/lib/constants';
 import db from '@/lib/db';
 import getSession from '@/lib/session';
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react'
 
@@ -26,13 +28,7 @@ export default async function Profile() {
 
   const user = await getUser();
 
-  // 로그아웃
-  const logOut = async () => {
-    "use server";
-    const session = await getSession();
-    session.destroy();
-    redirect("/");
-  };
+  
 
   return (
     <>
@@ -42,6 +38,8 @@ export default async function Profile() {
       <form action={logOut}>
         <button>Log out</button>
       </form>
+
+      <Link href="/">home 으로</Link>
     </>
   )
 }

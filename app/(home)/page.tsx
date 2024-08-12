@@ -1,42 +1,42 @@
-"use client";
+import { logOut } from '@/lib/constants'
+import db from '@/lib/db';
+import Link from 'next/link'
+import React from 'react'
 
-import FormButton from "@/components/form-btn";
-import Input from "@/components/input";
 
-import { useFormState } from "react-dom";
-import { logIn, FormState } from "./actions";
-import Link from "next/link";
+async function getTweet() {
+  const tweet = await db.tweet.findMany({
+    select: {
+      id: true,
+      tweet: true,
+      created_at: true,
+      updated_at: true,
+      user: true,
+    },
+  });
+  return tweet;
+}
 
-const initialState: FormState = {
-  errors: {},
-  message: "",
-};
+export default async function Home() {
 
-export default function Login() {
-
-  const [state, action] = useFormState(logIn, initialState);
+  const tweet = await getTweet();
 
   return (
-    <div className="flex flex-col gap-10 py-8 px-6">
-      <div className="flex flex-col gap-2 *:font-medium">
-        <h1 className="text-2xl text-center">💙</h1>
+    <>
+      <div>
+        <Link href="/profile">profile</Link>
+        <form action={logOut}>
+          <button>Log out</button>
+        </form>
+        <div>Home</div>
       </div>
-      <form action={action} className="flex flex-col gap-3">
-        <Input
-            name="email"
-            type="email"
-            placeholder="Email"
-            errors={state?.errors?.fieldErrors?.email}
-          />
-          <Input
-            name="password"
-            type="password"
-            placeholder="Password"
-            errors={state?.errors?.fieldErrors?.password}
-          />
-          <FormButton text="Log In!" />
-      </form>
-      <Link href="/create">create user</Link>
-    </div>
-  );
+      <ul>
+        {tweet.map((t,i) => (
+          <li key={t.id}>
+            <Link href={`/tweets/${t.id}`}>{t.tweet}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
 }

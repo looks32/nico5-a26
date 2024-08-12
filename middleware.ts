@@ -9,7 +9,7 @@ interface Routes {
 
 // 누구나 들어갈 수 있는 URL
 const publicOnlyUrls: Routes = {
-  "/": true,
+  // "/": true,
   "/login": true,
   "/create": true,
 };
@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
 
 	  // session.id가 없고 public이외의 페이지 접근시
     if (!exists) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/login", request.url));
     }
     
   // 로그인 상태일때

@@ -1,4 +1,6 @@
 import { z } from "zod";
+import getSession from "./session";
+import { redirect } from "next/navigation";
 
 // @zod.com 필수 이메일
 export const EMAIL_REGEX = new RegExp(
@@ -31,3 +33,14 @@ export const PASSWORD_REGEX = new RegExp(
 // 비밀번호 정규식 에러 알림
 export const PASSWORD_REGEX_ERROR =
   "Password should contain at least one number(0123456789)";
+
+
+
+
+ // 로그아웃
+export const logOut = async () => {
+  "use server";
+  const session = await getSession();
+  session.destroy();
+  redirect("/");
+};
