@@ -31,7 +31,7 @@ export interface FormState {
 
 // email 존재하는지 확인
 const checkEmailExists = async (email: string) => {
-  const user = await db.user.findFirst({
+  const user = await db.user.findUnique({
     where: {
       email,
     },
@@ -68,7 +68,7 @@ export async function logIn(prevState: FormState | undefined, formData: FormData
     };
   }
   else {
-    const user = await db.user.findFirst({
+    const user = await db.user.findUnique({
       where: {
         email: result.data.email,
       },
