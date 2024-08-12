@@ -1,5 +1,6 @@
 import db from '@/lib/db';
 import getSession from '@/lib/session';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
 
@@ -35,6 +36,10 @@ export default async function tweets({
 	params: { id: string };
   }) {
   const id = Number(params.id);
+
+  const prev = id - 1
+  const next = id + 1
+
   if (isNaN(id)) {
     return notFound();
   }
@@ -47,10 +52,14 @@ export default async function tweets({
   const isOwner = await getIsOwner(tweet.userId);
 
   return (
-	<>
-		<div>tweets {tweet.user.username}</div>
-		<div>{tweet.tweet}</div>
-		{isOwner ? '내가오너다' : '오너아닌디'}
+	<>	
+		<Link href={`/tweets/${prev}`}>이전</Link>
+		<div>작성자 : {tweet.user.username}</div>
+		<div>내용 : {tweet.tweet}</div>
+
+		{/* 작성자 확인 */}
+		{isOwner ? <div>💙</div> : null}
+		<Link href={`/tweets/${next}`}>다음</Link>
 	</>
   )
 }
