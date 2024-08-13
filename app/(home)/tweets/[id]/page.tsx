@@ -19,12 +19,12 @@ async function getTweet(id: number) {
 			id,
 		},
 		include: {
-		user: {
-			select: {
-				username: true,
-				Tweet:true
+			user: {
+				select: {
+					username: true,
+					Tweet:true
+				},
 			},
-		},
 		},
 	});
 	return tweet;
@@ -36,9 +36,6 @@ export default async function tweets({
 	params: { id: string };
   }) {
   const id = Number(params.id);
-
-  const prev = id - 1
-  const next = id + 1
 
   if (isNaN(id)) {
     return notFound();
@@ -53,13 +50,15 @@ export default async function tweets({
 
   return (
 	<>	
-		<Link href={`/tweets/${prev}`}>이전</Link>
-		<div>작성자 : {tweet.user.username}</div>
-		<div>내용 : {tweet.tweet}</div>
-
-		{/* 작성자 확인 */}
-		{isOwner ? <div>💙</div> : null}
-		<Link href={`/tweets/${next}`}>다음</Link>
+		
+		<div className="w-[400px] mx-auto relative">
+			<Link href="/">뒤로</Link>
+			<div className="p-8">작성자 : {tweet.user.username}</div>
+			<div className="p-8">내용 : {tweet.tweet}</div>
+			
+			{/* 작성자 확인 */}
+			{/* {isOwner ? <div>💙</div> : null} */}
+		</div>
 	</>
   )
 }

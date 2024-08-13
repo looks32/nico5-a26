@@ -1,42 +1,39 @@
+import TweetList from '@/components/tweet-list';
 import { logOut } from '@/lib/constants'
 import db from '@/lib/db';
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import { Prisma } from "@prisma/client";
 
 
-async function getTweet() {
-  const tweet = await db.tweet.findMany({
+async function getInitialTweets() {
+  const tweets = await db.tweet.findMany({
     select: {
       id: true,
       tweet: true,
       created_at: true,
-      updated_at: true,
-      user: true,
     },
+    take: 1,
   });
-  return tweet;
+  return tweets;
 }
 
-export default async function Home() {
+export type InitialTweets = Prisma.PromiseReturnType<
+  typeof getInitialTweets
+>;
 
-  const tweet = await getTweet();
+
+export default async function Home() {
+  const initialTweets = await getInitialTweets();
 
   return (
     <>
-      <div>
+      <div className="w-[400px] mx-auto flex justify-between p-6">
         <Link href="/profile">profile</Link>
         <form action={logOut}>
           <button>Log out</button>
         </form>
-        <div>Home</div>
       </div>
-      <ul>
-        {tweet.map((t,i) => (
-          <li key={t.id}>
-            <Link href={`/tweets/${t.id}`}>{t.tweet}</Link>
-          </li>
-        ))}
-      </ul>
+      <TweetList initialTweets={initialTweets}/>
     </>
   )
 }
