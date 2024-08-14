@@ -1,4 +1,5 @@
 import TweetList from '@/components/tweet-list';
+import AddTweet from '@/components/add-tweet';
 import { logOut } from '@/lib/constants'
 import db from '@/lib/db';
 import Link from 'next/link';
@@ -34,6 +35,7 @@ export default async function Home() {
         </form>
       </div>
       <TweetList initialTweets={initialTweets}/>
+      <AddTweet/>
     </>
   )
 }
