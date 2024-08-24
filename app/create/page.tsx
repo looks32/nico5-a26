@@ -2,10 +2,12 @@
 
 import FormButton from "@/components/form-btn";
 import Input from "@/components/input";
+import styles from "@/styles/create.module.scss";
 
 import { useFormState } from "react-dom";
 import { createUser, FormState } from "./actions";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
+import Link from "next/link";
 
 const initialState: FormState = {
   errors: {},
@@ -17,11 +19,13 @@ export default function Create() {
   const [state, action] = useFormState(createUser, initialState);
 
   return (
-    <div className="flex flex-col gap-10 py-8 px-6">
-      <div className="flex flex-col gap-2 *:font-medium">
-        <h1 className="text-2xl text-center">💙</h1>
+    <div className={styles.create_wrap} >
+      <div>
+        <h1>
+          <Link href="/">💙</Link>
+        </h1>
       </div>
-      <form action={action} className="flex flex-col gap-3">
+      <form action={action}>
         <Input
             name="email"
             type="email"

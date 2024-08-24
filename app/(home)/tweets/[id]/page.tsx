@@ -51,7 +51,7 @@ export default async function tweets({
   return (
 	<>	
 		
-		<div className="w-[400px] mx-auto relative">
+		<div className="w-[540px] mx-auto relative">
 			<Link href="/">뒤로</Link>
 			<div className="p-8">작성자 : {tweet.user.username}</div>
 			<div className="p-8">내용 : {tweet.tweet}</div>
