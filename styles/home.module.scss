@@ -1,6 +1,12 @@
 .home_wrap {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 540px;
     margin: 0 auto;
+
+    button:hover,
+    a:hover {
+        color:#0078d7;
+    }
 }

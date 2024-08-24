@@ -15,7 +15,7 @@ async function getInitialTweets() {
       created_at: true,
       user: true
     },
-    take: 1,
+    // take: 1,
   });
   return tweets;
 }
@@ -32,12 +32,12 @@ export default async function Home() {
   return (
     <>
       <div className={styles.home_wrap}>
-        <Link href={`/users/${user?.username}`}>profile</Link>
+        <Link href={`/users/${user?.username}`}>My page</Link>
         <form action={logOut}>
           <button>Log out</button>
         </form>
+        <TweetList initialTweets={initialTweets}/>
       </div>
-      <TweetList initialTweets={initialTweets}/>
     </>
   )
 }
