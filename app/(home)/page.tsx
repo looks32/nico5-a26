@@ -1,6 +1,6 @@
 import TweetList from '@/components/tweet-list';
 import AddTweet from '@/components/add-tweet';
-import { logOut } from '@/lib/constants'
+import { getUser, logOut } from '@/lib/constants'
 import db from '@/lib/db';
 import Link from 'next/link';
 import { Prisma } from "@prisma/client";
@@ -13,6 +13,7 @@ async function getInitialTweets() {
       id: true,
       tweet: true,
       created_at: true,
+      user: true
     },
     take: 1,
   });
@@ -26,18 +27,17 @@ export type InitialTweets = Prisma.PromiseReturnType<
 
 export default async function Home() {
   const initialTweets = await getInitialTweets();
+  const user = await getUser();
 
   return (
     <>
       <div className={styles.home_wrap}>
-        {/* profile 1로 이동 임시 */}
-        <Link href="/users/1">profile</Link>
+        <Link href={`/users/${user?.username}`}>profile</Link>
         <form action={logOut}>
           <button>Log out</button>
         </form>
       </div>
       <TweetList initialTweets={initialTweets}/>
-      <AddTweet/>
     </>
   )
 }

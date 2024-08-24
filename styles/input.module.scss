@@ -6,7 +6,16 @@
         border-radius: 5px;
         padding: 10px;
         border: 1px solid #ddd;
-        background-color: transparent;
+        background-color: #fff;
+    }
+
+    textarea {
+        width: 100%;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        outline: none;
     }
 
     span {

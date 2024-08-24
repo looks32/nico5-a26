@@ -5,6 +5,8 @@ import { getTweet } from "@/app/(home)/action";
 import { InitialTweets } from "@/app/(home)/page";
 import Link from "next/link";
 import { setTimeout } from "timers";
+import styles from "@/styles/tweetList.module.scss";
+import AddTweet from "./add-tweet";
 
 interface TweetListProps {
   initialTweets: InitialTweets;
@@ -16,6 +18,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   const [page, setPage] = useState(0);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false);
+  const [modal, setModal] = useState(false)
 
   const prevClick = async () => {
     setIsLoading(true);
@@ -42,24 +45,38 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   };
 
   return (
-    <div className="p-5 flex flex-col gap-5">
-	
-      <button
-        onClick={prevClick}
-        // disabled={isFirstPage}
-        className="text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95 disabled:bg-slate-700"
-      >
-        {isLoading ? "Loading...." : "prev"}
-      </button>
-	  <Link href={`/tweets/${tweets[page].id}`}>{tweets[page].tweet}</Link>
-	  
-      <button
-        onClick={nextClick}
-        // disabled={isLastPage}
-        className="text-sm font-semibold bg-orange-500 w-fit mx-auto px-3 py-2 rounded-md hover:opacity-90 active:scale-95 disabled:bg-slate-700"
-      >
-        {isLoading ? "Loading...." : "next"}
-      </button>
-    </div>
+    <>
+      <div className={styles.tweet_list_wrap}>
+        <button
+          onClick={prevClick}
+          disabled={isLoading}
+          className={`${styles.prev} ${styles.btn}`}
+        >
+          {/* {isLoading ? "Loading...." : "prev"} */}
+          prev
+        </button>
+
+
+        <Link href={`/tweets/${tweets[page].id}`} className={styles.content}>
+          {tweets[page].tweet}
+        </Link>
+
+        <Link href={`/users/${tweets[page].user.username}`}>
+          작성자 : {tweets[page].user.username}
+        </Link>
+      
+        <button
+          onClick={nextClick}
+          disabled={isLoading}
+          className={`${styles.next} ${styles.btn}`}
+        >
+          {/* {isLoading ? "Loading...." : "next"} */}
+          next
+        </button>
+
+        <button className={styles.add_btn} onClick={()=>setModal((prev)=>!prev)}>+</button>
+      </div>
+      {modal ? <AddTweet modal={modal} setModal={setModal}/> : null}
+    </>
   );
 }
