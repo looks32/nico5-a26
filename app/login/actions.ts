@@ -89,9 +89,9 @@ export async function logIn(prevState: FormState | undefined, formData: FormData
       const session = await getSession();
       session.id = user!.id;
 
-      // 저장하고 profile로 보냄
+      // 저장하고 home 보냄
       await session.save();
-      redirect("/profile");
+      redirect("/");
      
     } else {
       return {

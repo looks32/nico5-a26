@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
+import styles from "@/styles/formBtn.module.scss";
 
 interface FormButtonProps {
   text: string;
@@ -11,7 +12,7 @@ export default function FormButton({ text }: FormButtonProps) {
   return (
     <button
       disabled={pending}
-      className="disabled:bg-neutral-400 disabled:text-neutral-300 disabled:cursor-not-allowed p-3 bg-gray-300 rounded-md"
+      className={styles.form_btn}
     >
       {pending ? "loading..." : text}
     </button>

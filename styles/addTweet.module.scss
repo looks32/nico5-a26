@@ -1,0 +1,14 @@
+.add_tweet_wrap {
+    position: relative;
+    width: 540px;
+    margin: 0 auto;
+
+    form {
+        margin-top: 15px;
+
+        > div {
+            margin-top: 15px;
+            text-align: center;
+        }
+    }
+}

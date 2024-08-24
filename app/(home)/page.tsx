@@ -4,6 +4,7 @@ import { logOut } from '@/lib/constants'
 import db from '@/lib/db';
 import Link from 'next/link';
 import { Prisma } from "@prisma/client";
+import styles from "@/styles/home.module.scss";
 
 
 async function getInitialTweets() {
@@ -28,8 +29,9 @@ export default async function Home() {
 
   return (
     <>
-      <div className="w-[400px] mx-auto flex justify-between p-6">
-        <Link href="/profile">profile</Link>
+      <div className={styles.home_wrap}>
+        {/* profile 1로 이동 임시 */}
+        <Link href="/users/1">profile</Link>
         <form action={logOut}>
           <button>Log out</button>
         </form>

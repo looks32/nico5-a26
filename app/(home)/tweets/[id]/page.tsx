@@ -3,6 +3,7 @@ import getSession from '@/lib/session';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import styles from "@/styles/tweetDetail.module.scss";
 
 // 작성자 확인
 async function getIsOwner(userId: number) {
@@ -50,11 +51,10 @@ export default async function tweets({
 
   return (
 	<>	
-		
-		<div className="w-[540px] mx-auto relative">
+		<div className={styles.tweet_detail_wrap}>
 			<Link href="/">뒤로</Link>
-			<div className="p-8">작성자 : {tweet.user.username}</div>
-			<div className="p-8">내용 : {tweet.tweet}</div>
+			<div>작성자 : {tweet.user.username}</div>
+			<div>내용 : {tweet.tweet}</div>
 			
 			{/* 작성자 확인 */}
 			{/* {isOwner ? <div>💙</div> : null} */}

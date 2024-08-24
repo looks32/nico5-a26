@@ -1,6 +1,7 @@
 import { z } from "zod";
 import getSession from "./session";
 import { redirect } from "next/navigation";
+import db from "./db";
 
 // @zod.com 필수 이메일
 export const EMAIL_REGEX = new RegExp(
@@ -44,3 +45,23 @@ export const logOut = async () => {
   session.destroy();
   redirect("/");
 };
+
+
+// user 상태 확인
+export async function getUser() {
+  const session = await getSession();
+  if (session.id) {
+    const user = await db.user.findUnique({
+      where: {
+        id: session.id,
+      },
+      select: {
+        username: true,
+        email:true,
+      },
+    });
+    if (user) {
+      return user;
+    }
+  }
+}
