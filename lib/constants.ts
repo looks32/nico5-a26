@@ -56,6 +56,7 @@ export async function getUser() {
         id: session.id,
       },
       select: {
+        id:true,
         username: true,
         email:true,
       },
@@ -64,4 +65,35 @@ export async function getUser() {
       return user;
     }
   }
+}
+
+
+// 작성자 확인
+export async function getIsOwner(userId: number) {
+	const session = await getSession();
+	if (session.id) {
+		return session.id === userId;
+	}
+	return false;
+}
+
+
+// tweet 가져오기
+export async function getTweet(id: number) {
+	const tweet = await db.tweet.findUnique({
+		where: {
+			id,
+		},
+		include: {
+			user: {
+				select: {
+          id:true,
+					username: true,
+					Tweet:true,
+          email:true,
+				},
+			},
+		},
+	});
+	return tweet;
 }

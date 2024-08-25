@@ -1,5 +1,13 @@
 .users_wrap {
     width: 540px;
     margin: 0 auto;
-    background-color: red;
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        text-align: center;
+        background-color: #eee;
+        border-radius: 0.375rem;
+    }
 }

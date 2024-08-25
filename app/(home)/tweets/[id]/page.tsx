@@ -4,32 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import styles from "@/styles/tweetDetail.module.scss";
-
-// 작성자 확인
-async function getIsOwner(userId: number) {
-	const session = await getSession();
-	if (session.id) {
-		return session.id === userId;
-	}
-	return false;
-}
-
-async function getTweet(id: number) {
-	const tweet = await db.tweet.findUnique({
-		where: {
-			id,
-		},
-		include: {
-			user: {
-				select: {
-					username: true,
-					Tweet:true
-				},
-			},
-		},
-	});
-	return tweet;
-}
+import { getIsOwner } from '@/lib/constants';
+import { getTweet } from '@/lib/constants';
 
 export default async function tweets({
 	params,

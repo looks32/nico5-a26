@@ -105,7 +105,6 @@ export async function createUser(prevState: FormState | undefined, formData: For
       },
     });
 
-    console.log('완료', user);
     redirect('/')
 
     // return {

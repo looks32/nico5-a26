@@ -32,7 +32,7 @@ export default async function Home() {
   return (
     <>
       <div className={styles.home_wrap}>
-        <Link href={`/users/${user?.username}`}>My page</Link>
+        <Link href={`/users/${user?.id}`}>My page</Link>
         <form action={logOut}>
           <button>Log out</button>
         </form>

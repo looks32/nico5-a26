@@ -45,7 +45,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   // };
 
   useEffect(() => {
-   console.log('asd')
+   console.log('확인')
   }, [tweets])
 
   const newTweets = [...tweets].reverse();
@@ -67,7 +67,7 @@ export default function TweetList({ initialTweets }: TweetListProps) {
             newTweets.map((t)=>
               <li key={t.id}>
                 <Link href={`/tweets/${t.id}`} className={styles.content}>{t.tweet}</Link>
-                <Link href={`/users/${t.user.username}`}>
+                <Link href={`/users/${t.user.id}`}>
                   작성자 : {t.user.username}
                 </Link>
               </li>
