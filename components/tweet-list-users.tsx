@@ -16,15 +16,17 @@ export default function TweetListUsers({ initialTweets }:any) {
   return (
     <>
       <div className={styles.tweet_list_wrap}>
-        <ul>
-          {
-            newTweets.map((t)=>
-              <li key={t.id}>
-                <Link href={`/tweets/${t.id}`} className={styles.content}>{t.tweet}</Link>
-              </li>
-            )
-          }
-        </ul>
+        {tweets.length ?
+          <ul>
+            {
+              newTweets.map((t)=>
+                <li key={t.id}>
+                  <Link href={`/tweets/${t.id}`} className={styles.content}>{t.tweet}</Link>
+                </li>
+              )
+            }
+          </ul>
+         : <p>작성한 트윗이 없습니다.</p>}
       </div>
     </>
   );

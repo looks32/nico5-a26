@@ -12,7 +12,7 @@ interface TweetListProps {
   initialTweets: InitialTweets;
 }
 
-export default function TweetList({ initialTweets }: TweetListProps) {
+export default function TweetList({ initialTweets }: any) {
   // const [isLoading, setIsLoading] = useState(false);
   // const [page, setPage] = useState(0);
   // const [isFirstPage, setIsFirstPage] = useState(true);

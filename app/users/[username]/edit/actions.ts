@@ -25,6 +25,7 @@ export interface FormState {
       username?: string[];
       password?: string[];
       confirm_password?: string[];
+      introduce?: string[];
     };
   };
   message?: string;
@@ -74,6 +75,7 @@ const formSchema = z.object({
     checkUniqueUsername,
     "username 중복입니다."
   ),
+  introduce : z.string().min(1, '소개를 입력해주세요.'),
   password: z
     .string()
     .min(PASSWORD_MIN_LENGTH, PASSWORD_MIN_LENGTH_ERROR)
@@ -86,7 +88,7 @@ const formSchema = z.object({
 });
 
 
-export async function updateUser(prevState: FormState | undefined, formData: FormData, userId: string) {
+export async function updateUser(prevState: FormState | undefined, formData: FormData) {
 
   const session = await getSession();
 
@@ -96,6 +98,7 @@ export async function updateUser(prevState: FormState | undefined, formData: For
     username: formData.get("username"),
     password: formData.get("password"),
     confirm_password: formData.get("confirm_password"),
+    introduce: formData.get("introduce"),
   };
 
   // 데이터 유효성 검사
@@ -123,6 +126,7 @@ export async function updateUser(prevState: FormState | undefined, formData: For
         data: {
           username: result.data.username,
           email: result.data.email,
+          introduce: result.data.introduce,
           ...(hashedPassword && { password: hashedPassword }), // 비밀번호가 제공된 경우에만 업데이트
         },
         select: {

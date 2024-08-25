@@ -59,11 +59,33 @@ export async function getUser() {
         id:true,
         username: true,
         email:true,
+        Tweet:true,
+        introduce:true,
       },
     });
     if (user) {
       return user;
     }
+  }
+}
+
+
+// tweet user 상태 확인
+export async function getTweetUser(id:number) {
+  const user = await db.user.findUnique({
+    where: {
+      id
+    },
+    select: {
+      id:true,
+      username: true,
+      email:true,
+      Tweet:true,
+      introduce:true,
+    },
+  });
+  if (user) {
+    return user;
   }
 }
 
@@ -91,6 +113,7 @@ export async function getTweet(id: number) {
 					username: true,
 					Tweet:true,
           email:true,
+          introduce:true,
 				},
 			},
 		},

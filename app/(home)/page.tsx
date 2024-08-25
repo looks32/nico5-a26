@@ -5,6 +5,8 @@ import db from '@/lib/db';
 import Link from 'next/link';
 import { Prisma } from "@prisma/client";
 import styles from "@/styles/home.module.scss";
+import getSession from '@/lib/session';
+import Search from '@/components/search';
 
 
 async function getInitialTweets() {
@@ -27,12 +29,15 @@ export type InitialTweets = Prisma.PromiseReturnType<
 
 export default async function Home() {
   const initialTweets = await getInitialTweets();
-  const user = await getUser();
+  // const user = await getUser();
+  const session = await getSession();
+  
 
   return (
     <>
       <div className={styles.home_wrap}>
-        <Link href={`/users/${user?.id}`}>My page</Link>
+        <Link href={`/users/${session?.id}`}>My page</Link>
+        <Search/>
         <form action={logOut}>
           <button>Log out</button>
         </form>

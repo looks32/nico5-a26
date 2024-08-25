@@ -49,7 +49,15 @@ export default function Edit() {
           placeholder="Confirm Password"
           required
           errors={state?.errors?.fieldErrors?.confirm_password}
-        />
+          />
+          <Input
+          name="introduce"
+          type="text"
+          placeholder="introduce"
+          textarea={true}
+          required
+          errors={state?.errors?.fieldErrors?.introduce}
+          />
           <FormButton text="Edit!" />
           {/* 필요 없어짐 */}
           {/* {state?.message && (
