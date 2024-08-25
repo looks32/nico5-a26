@@ -17,10 +17,12 @@ export async function getSearchedTweet(keyword: string) {
 			id: true,
 			created_at: true,
 			updated_at: true,
+			tweet:true,
 			user: {
 				select: {
 					id: true,
 					username: true,
+					
 				},
 			},
 		},

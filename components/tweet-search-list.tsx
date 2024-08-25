@@ -20,9 +20,7 @@ export default function TweetSearchList({ initialTweets, keyword }: any) {
 	return (
 		<div className="flex flex-col gap-5 w-full px-2">
 			<ul className="w-full flex flex-col gap-5">
-				{tweets.map(tweet => (
-					<TweetList initialTweets={tweets}/>
-				))}
+				<TweetList initialTweets={tweets}/>
 			</ul>
 			{tweets.length === 0 && <p>검색 결과가 없습니다.</p>}
 		</div>
