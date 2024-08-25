@@ -56,7 +56,7 @@ const formSchema = z.object({
   email: z.string().email(EMAIL_ERROR).toLowerCase().regex(EMAIL_REGEX, EMAIL_REGEX_ERROR),
   username : z.string().min(USERNAME_MIN_LENGTH, USERNAME_MIN_LENGTH_ERROR).refine(
     checkUniqueUsername,
-    "username 중복임다"
+    "username 중복입니다."
   ),
   password: z
     .string()

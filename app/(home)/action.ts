@@ -1,7 +1,6 @@
 "use server";
 import db from "@/lib/db";
 import getSession from "@/lib/session";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 
 // tweet 업로드 interface

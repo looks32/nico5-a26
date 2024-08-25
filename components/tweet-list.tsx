@@ -44,9 +44,9 @@ export default function TweetList({ initialTweets }: TweetListProps) {
   //   setIsLoading(false);
   // };
 
-  useEffect(() => {
-   console.log('확인')
-  }, [tweets])
+  // useEffect(() => {
+  //  console.log('확인')
+  // }, [tweets])
 
   const newTweets = [...tweets].reverse();
   

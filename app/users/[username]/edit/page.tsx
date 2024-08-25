@@ -4,7 +4,7 @@ import FormButton from '@/components/form-btn';
 import Input from '@/components/input';
 import Link from 'next/link';
 import React from 'react'
-import { createUser,FormState } from './actions';
+import { updateUser,FormState } from './actions';
 import styles from "@/styles/create.module.scss";
 import { useFormState } from "react-dom";
 
@@ -15,7 +15,7 @@ const initialState: FormState = {
 
 export default function Edit() {
 
-  const [state, action] = useFormState(createUser, initialState);
+  const [state, action] = useFormState(updateUser, initialState);
 
   return (
     <div className={styles.create_wrap} >
