@@ -25,7 +25,6 @@ export default function SearchBar() {
 						type="text"
 						placeholder="검색"
 					/>
-					<button>버튼</button>
 				</form>
 			</div>
 		</div>
