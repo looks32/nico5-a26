@@ -7,6 +7,7 @@ import styles from "@/styles/tweetDetail.module.scss";
 import { getIsOwner } from '@/lib/constants';
 import { getTweet } from '@/lib/constants';
 
+
 export default async function tweets({
 	params,
   }: {
@@ -28,7 +29,7 @@ export default async function tweets({
   return (
 	<>	
 		<div className={styles.tweet_detail_wrap}>
-			<Link href="/">뒤로</Link>
+			<Link href="/">home</Link>
 			<div>작성자 : {tweet.user.username}</div>
 			<div>내용 : {tweet.tweet}</div>
 			

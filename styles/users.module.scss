@@ -2,12 +2,23 @@
     width: 540px;
     margin: 0 auto;
 
+    .inner {
+        margin: 40px 0;
+    }
+
     .btn {
         display: block;
         width: 100%;
+        margin-top: 10px;
         padding: 0.75rem;
         text-align: center;
         background-color: #eee;
         border-radius: 0.375rem;
+    }
+
+    h2 {
+        margin-top: 40px;
+        font-weight: bold;
+        font-size: 20px;
     }
 }
