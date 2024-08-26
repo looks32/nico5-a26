@@ -6,7 +6,8 @@ import { InitialTweets } from "@/app/(home)/page";
 import Link from "next/link";
 // import { setTimeout } from "timers";
 import styles from "@/styles/tweetList.module.scss";
-import AddTweet from "./add-tweet";
+import Modal from "./modal";
+
 
 interface TweetListProps {
   initialTweets: InitialTweets;
@@ -17,7 +18,7 @@ export default function TweetList({ initialTweets }: any) {
   // const [page, setPage] = useState(0);
   // const [isFirstPage, setIsFirstPage] = useState(true);
   // const [isLastPage, setIsLastPage] = useState(false);
-  const [modal, setModal] = useState(false);
+  
   const [tweets, setTweets] = useState(initialTweets);
 
   // const prevClick = async () => {
@@ -84,9 +85,9 @@ export default function TweetList({ initialTweets }: any) {
           next
         </button> */}
 
-        <button className={styles.add_btn} onClick={()=>setModal((prev)=>!prev)}>+</button>
+        <Modal/>
       </div>
-      {modal ? <AddTweet modal={modal} setModal={setModal}/> : null}
+      
     </>
   );
 }
